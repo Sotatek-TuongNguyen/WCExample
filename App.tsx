@@ -91,22 +91,24 @@ function App() {
           },
         ],
       })
-      .catch(e => {
-        console.log({e});
+      .catch(error => {
+        console.log({error});
       });
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{fontWeight: 'bold'}}>ChainId: {chainId}</Text>
+      <Text style={[styles.text, styles.chain]}>ChainId: {chainId}</Text>
       <TouchableOpacity
         style={styles.btn}
         onPress={isConnected ? _disconnect : _open}>
-        <Text style={{}}>{isConnected ? 'Disconnect' : 'Connect'}</Text>
+        <Text style={styles.text}>
+          {isConnected ? 'Disconnect' : 'Connect'}
+        </Text>
       </TouchableOpacity>
       {isConnected ? (
         <TouchableOpacity style={styles.btn} onPress={_switchChain}>
-          <Text style={{}}>Switch chain</Text>
+          <Text style={styles.text}>Switch chain</Text>
         </TouchableOpacity>
       ) : null}
       <WalletConnectModal
@@ -131,6 +133,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     margin: 10,
+  },
+  chain: {
+    fontWeight: 'bold',
+  },
+  text: {
+    color: '#3b3b3b',
   },
 });
 
